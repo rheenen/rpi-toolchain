@@ -1,0 +1,11 @@
+# hardfp
+#export RPITOOLCHAIN_HOST="x86-linux64-cross-arm-linux-hardfp"
+#export RPITOOLCHAIN_TARGET="arm-bcm2708hardfp-linux-gnueabi"
+#export RPITOOLCHAIN="${PWD}/tools/arm-bcm2708/${RPITOOLCHAIN_HOST}"
+#export RPIFIRMWARE="${PWD}/firmware/hardfp"
+
+# default
+export RPITOOLCHAIN_HOST="linux-x86"
+export RPITOOLCHAIN_TARGET="arm-bcm2708-linux-gnueabi"
+export RPITOOLCHAIN="${PWD}/tools/arm-bcm2708/${RPITOOLCHAIN_HOST}"
+export RPIFIRMWARE="${PWD}/firmware"

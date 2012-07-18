@@ -1,0 +1,24 @@
+   Raspberry Pi Toolchain used by Marshmallow Game Engine (@marshmallow_h)
+==============================================================================
+
+How to use
+----------
+
+You will need to source the environment file (currently only works with sh and bash).
+
+    $ source ./env
+
+This will add populate the following environment variables used by 'marshmallow_h'.
+
+    RPITOOLCHAIN_HOST
+    RPITOOLCHAIN_TARGET
+    RPITOOLCHAIN
+    RPIFIRMWARE
+
+Now, go to your local 'marshmallow_h' cloned repository, go into the build
+directory and run the following command:
+
+    $ cmake -DCMAKE_TOOLCHAIN_FILE=../cmake/Toolchain-raspberrypi.cmake ..
+
+Now cross your fingers and run 'make'.
+

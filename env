@@ -1,11 +1,17 @@
+#!/bin/bash
+
+# find base
+export RPITOOLCHAIN_BASE=`readlink -f \`dirname ${BASH_SOURCE}\``
+
 # hardfp
 #export RPITOOLCHAIN_HOST="x86-linux64-cross-arm-linux-hardfp"
-#export RPITOOLCHAIN_TARGET="arm-bcm2708hardfp-linux-gnueabi"
 #export RPITOOLCHAIN="${PWD}/tools/arm-bcm2708/${RPITOOLCHAIN_HOST}"
 #export RPIFIRMWARE="${PWD}/firmware/hardfp"
 
-# default
+# softfp
 export RPITOOLCHAIN_HOST="linux-x86"
-export RPITOOLCHAIN_TARGET="arm-bcm2708-linux-gnueabi"
-export RPITOOLCHAIN="${PWD}/tools/arm-bcm2708/${RPITOOLCHAIN_HOST}"
-export RPIFIRMWARE="${PWD}/firmware"
+export RPITOOLCHAIN="${RPITOOLCHAIN_BASE}/tools/arm-bcm2708/${RPITOOLCHAIN_HOST}"
+export RPIFIRMWARE="${RPITOOLCHAIN_BASE}/firmware"
+
+# find target
+export RPITOOLCHAIN_TARGET=`find ${RPITOOLCHAIN_BASE}/tools/arm-bcm2708/${RPITOOLCHAIN_HOST}/bin/ -type f -iname arm-*-gcc | xargs -ixxx basename xxx -gcc`

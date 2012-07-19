@@ -1,14 +1,30 @@
    Raspberry Pi Toolchain used by Marshmallow Game Engine (@marshmallow_h)
 ==============================================================================
 
+How to clone
+------------
+
+The fastest way is to first checkout the base and then shallow clone the
+submodules:
+
+    $ git clone git://github.com/gamaral/rpi-toolchain.git
+    $ cd rpi-toolchain
+    $ scripts/quick-clone
+
+
+Alternatively, if time and bandwidth are not an issue:
+
+    $ git clone --recursive git://github.com/gamaral/rpi-toolchain.git
+
 How to use
 ----------
 
-You will need to source the environment file (currently only works with sh and bash).
+You will need to source the environment file (currently only works bash):
 
     $ source ./env
 
-This will add populate the following environment variables used by 'marshmallow_h'.
+This will add populate the following environment variables used by
+'marshmallow_h':
 
     RPITOOLCHAIN_HOST
     RPITOOLCHAIN_TARGET
@@ -18,7 +34,7 @@ This will add populate the following environment variables used by 'marshmallow_
 Now, go to your local 'marshmallow_h' cloned repository, go into the build
 directory and run the following command:
 
-    $ cmake -DCMAKE_TOOLCHAIN_FILE=../cmake/Toolchain-raspberrypi.cmake ..
+    $ cmake -DCMAKE_TOOLCHAIN_FILE=../cmake/Toolchain-raspberrypi.cmake -C ../cmake/Cache-raspberrypi.cmake ..
 
 Now cross your fingers and run 'make'.
 

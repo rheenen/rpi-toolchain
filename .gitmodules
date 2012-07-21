@@ -1,6 +1,6 @@
 [submodule "firmware"]
 	path = firmware
-	url = git://github.com/raspberrypi/firmware.git
+	url = git://github.com/gamaral/rpi-firmware.git
 [submodule "tools"]
 	path = tools
 	url = git://github.com/raspberrypi/tools.git

@@ -4,6 +4,6 @@ BASE=`readlink -f \`dirname ${BASH_SOURCE}\`/../`
 
 cd $BASE
 git submodule init
-git clone --depth 0 git://github.com/raspberrypi/firmware.git
-git clone --depth 0 git://github.com/raspberrypi/tools.git
+git clone --depth 0 git://github.com/gamaral/rpi-firmware.git firmware
+git clone --depth 0 git://github.com/raspberrypi/tools.git tools
 git submodule update

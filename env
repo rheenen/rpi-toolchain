@@ -5,7 +5,7 @@ export RPITOOLCHAIN_BASE=`readlink -f \`dirname ${BASH_SOURCE}\``
 
 # hardfp
 export RPIFIRMWARE="${RPITOOLCHAIN_BASE}/firmware/hardfp"
-export RPITOOLCHAIN_HOST="x86-linux64-cross-arm-linux-hardfp"
+export RPITOOLCHAIN_HOST="arm-bcm2708hardfp-linux-gnueabi"
 
 # softfp
 #export RPIFIRMWARE="${RPITOOLCHAIN_BASE}/firmware"

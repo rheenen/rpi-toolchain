@@ -1,16 +1,25 @@
 #!/bin/bash
 
-# find base
+# find base and firmware
 export RPITOOLCHAIN_BASE=`readlink -f \`dirname ${BASH_SOURCE}\``
+export RPIFIRMWARE="${RPITOOLCHAIN_BASE}/firmware"
 
-# hardfp
-export RPIFIRMWARE="${RPITOOLCHAIN_BASE}/firmware/hardfp"
-export RPITOOLCHAIN_HOST="arm-bcm2708hardfp-linux-gnueabi"
+# check for softfp
+if [ "${1}" == "soft" ] || [ "${1}" == "softfp" ]; then
+	echo 'Using softfp toolchain'
+	export RPITOOLCHAIN_TARGET="arm-bcm2708-linux-gnueabi"
+	shift
 
-# softfp
-#export RPIFIRMWARE="${RPITOOLCHAIN_BASE}/firmware"
-#export RPITOOLCHAIN_HOST="linux-x86"
+# default to hardfp
+else
+	echo 'Using hardfp toolchain'
+	export RPITOOLCHAIN_TARGET="arm-bcm2708hardfp-linux-gnueabi"
+	export RPIFIRMWARE="${RPIFIRMWARE}/hardfp"
+fi
 
-# find target
-export RPITOOLCHAIN="${RPITOOLCHAIN_BASE}/tools/arm-bcm2708/${RPITOOLCHAIN_HOST}"
-export RPITOOLCHAIN_TARGET=`find ${RPITOOLCHAIN_BASE}/tools/arm-bcm2708/${RPITOOLCHAIN_HOST}/bin/ -type f -iname arm-*-gcc | xargs -ixxx basename xxx -gcc`
+# build final toolchain path
+export RPITOOLCHAIN="${RPITOOLCHAIN_BASE}/tools/arm-bcm2708/${RPITOOLCHAIN_TARGET}"
+
+# execute
+[ "${0}" != "-bash" ]  && [ ${#*} -gt 0 ] && exec ${*:1}
+

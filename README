@@ -4,37 +4,59 @@
 How to clone
 ------------
 
-The fastest way is to first checkout the base and then shallow clone the
-submodules:
+The fastest way to get a working checkout is to only clone the toolchain base
+and then shallow clone the submodules, like so:
 
     $ git clone git://github.com/gamaral/rpi-toolchain.git
     $ cd rpi-toolchain
     $ scripts/quick-clone
 
 
-Alternatively, if time and bandwidth are not an issue:
+Alternatively, if you have the time and bandwidth, you could just run the
+following:
 
     $ git clone --recursive git://github.com/gamaral/rpi-toolchain.git
 
 How to use
 ----------
 
-You will need to source the environment file (currently only works bash):
+Notice: The following script only works for 'bash'.
+
+I provide a simple environment script that can be used to load both the
+*hardfp* and *softfp* versions of the toolchain. While the script defaults to
+hardfp, you may request softfp by passing 'soft' or 'softfp' as the first
+parameter of the script.
+
+    Examples: ./env softfp make
+              source ./env softfp
+
+As you noticed above, you have two ways of loading the environment, the first
+is to source then environment script:
 
     $ source ./env
 
-This will add populate the following environment variables used by
+You can alternatively use the environment script to bootstrap another process,
+like cmake:
+
+    $ <path-to-toolchain>/env [soft] cmake ..
+
+The script will populate the following environment variables used by
 'marshmallow_h':
 
-    RPITOOLCHAIN_HOST
     RPITOOLCHAIN_TARGET
     RPITOOLCHAIN
     RPIFIRMWARE
 
-Now, go to your local 'marshmallow_h' cloned repository, go into the build
-directory and run the following command:
+Marshmallow Game Engine
+-----------------------
 
-    $ cmake -DCMAKE_TOOLCHAIN_FILE=../cmake/Toolchain-raspberrypi.cmake -C ../cmake/Cache-raspberrypi.cmake ..
+Run the following commands while in your local *marshmallow_h* cloned
+repository's build directory.
 
-Now cross your fingers and run 'make'.
+    $ source <path-to-toolchain>/env
+    $ cmake -DCMAKE_TOOLCHAIN_FILE=../cmake/Toolchain-raspberrypi.cmake \
+            -C../cmake/Cache-raspberrypi.cmake ..
+    $ make
+
+Now cross your fingers.
 

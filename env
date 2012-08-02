@@ -20,9 +20,12 @@ fi
 # build final toolchain path
 export RPITOOLCHAIN="${RPITOOLCHAIN_BASE}/tools/arm-bcm2708/${RPITOOLCHAIN_TARGET}"
 
+# generic environment
 export CXX=${RPITOOLCHAIN}/bin/${RPITOOLCHAIN_TARGET}-g++
 export CC=${RPITOOLCHAIN}/bin/${RPITOOLCHAIN_TARGET}-gcc
 export LD=${RPITOOLCHAIN}/bin/${RPITOOLCHAIN_TARGET}-ld
+export LD_LIBRARY_PATH=${RPITOOLCHAIN}/${RPITOOLCHAIN_TARGET}/sysroot/lib
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${RPIFIRMWARE}/opt/vc/lib
 
 # execute
 [ "${0}" != "-bash" ]  && [ ${#*} -gt 0 ] && exec ${*:1}
